@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Restaurant:</strong>
+  <%= @widget.restaurant %>
+</p>
+
+<p>
+  <strong>Half:</strong>
+  <%= @widget.half %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @widget.position %>
+</p>
+
+<p>
+  <strong>Widget klass:</strong>
+  <%= @widget.widget_klass %>
+</p>
+
+<%= link_to 'Edit', edit_widget_path(@widget) %> |
+<%= link_to 'Back', widgets_path %>

@@ -19,6 +19,8 @@ gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'passenger'
 
+gem 'annotate'
+
 gem 'devise'
 gem 'administrate'
 gem 'carrierwave'

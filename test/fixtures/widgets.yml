@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant_id: 
+  half: false
+  position: 1
+  widget_klass: MyString
+
+two:
+  restaurant_id: 
+  half: false
+  position: 1
+  widget_klass: MyString

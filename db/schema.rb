@@ -11,9 +11,97 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160219192036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "menus", force: :cascade do |t|
+    t.integer  "widget_id"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "menus", ["widget_id"], name: "index_menus_on_widget_id", using: :btree
+
+  create_table "photos", force: :cascade do |t|
+    t.integer  "widget_id"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "photos", ["widget_id"], name: "index_photos_on_widget_id", using: :btree
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image"
+    t.string   "address"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "widget_id"
+    t.integer  "user_id"
+    t.string   "text"
+    t.string   "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  add_index "reviews", ["widget_id"], name: "index_reviews_on_widget_id", using: :btree
+
+  create_table "texts", force: :cascade do |t|
+    t.integer  "widget_id"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "texts", ["widget_id"], name: "index_texts_on_widget_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "image"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "widgets", force: :cascade do |t|
+    t.integer  "restaurant_id"
+    t.boolean  "half"
+    t.integer  "position"
+    t.string   "widget_klass"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "widgets", ["restaurant_id"], name: "index_widgets_on_restaurant_id", using: :btree
+
+  add_foreign_key "menus", "widgets"
+  add_foreign_key "photos", "widgets"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "widgets"
+  add_foreign_key "texts", "widgets"
+  add_foreign_key "widgets", "restaurants"
 end
