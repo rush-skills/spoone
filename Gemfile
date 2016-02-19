@@ -27,6 +27,8 @@ gem 'carrierwave'
 gem 'acts_as_list'
 gem 'geokit-rails'
 
+gem 'materialize-sass'
+
 group :development do
   gem 'better_errors'
   gem 'foreman'
