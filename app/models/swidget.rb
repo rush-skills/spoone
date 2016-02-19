@@ -1,24 +1,22 @@
 # == Schema Information
 #
-# Table name: photos
+# Table name: swidgets
 #
 #  id         :integer          not null, primary key
+#  name       :string
 #  widget_id  :integer
-#  image      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 # Indexes
 #
-#  index_photos_on_widget_id  (widget_id)
+#  index_swidgets_on_widget_id  (widget_id)
 #
 # Foreign Keys
 #
-#  fk_rails_cf2e3ae67b  (widget_id => widgets.id)
+#  fk_rails_8be2cc0deb  (widget_id => widgets.id)
 #
 
-class Photo < ActiveRecord::Base
+class Swidget < ActiveRecord::Base
   belongs_to :widget
-
-  mount_uploader :image, ImageUploader
 end

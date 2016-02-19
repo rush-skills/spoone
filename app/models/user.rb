@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
   has_many :reviews
 
   mount_uploader :image, ImageUploader
+
+  def to_s
+    self.name
+  end
 end

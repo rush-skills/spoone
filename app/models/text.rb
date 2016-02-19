@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  widget_id  :integer
 #  text       :text
+#  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -21,10 +22,6 @@ class Text < ActiveRecord::Base
   belongs_to :widget
 
   def to_s
-    text
-  end
-
-  def title
-    to_s
+    name
   end
 end

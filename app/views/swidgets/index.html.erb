@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Swidgets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Widget</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @swidgets.each do |swidget| %>
+      <tr>
+        <td><%= swidget.name %></td>
+        <td><%= swidget.widget %></td>
+        <td><%= link_to 'Show', swidget %></td>
+        <td><%= link_to 'Edit', edit_swidget_path(swidget) %></td>
+        <td><%= link_to 'Destroy', swidget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Swidget', new_swidget_path %>

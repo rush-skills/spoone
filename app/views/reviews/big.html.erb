@@ -16,43 +16,41 @@
 
 
       <span id="reviews_span">
-      {{ for review in restaurant.all_reviews }}
+      <%= @reviews.each do |review| %>
 
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="http://placehold.it/64x64">
-            <!-- <img src="{{ review.user.image.url }}"> -->
-          </p>
-        </figure>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>{{ review.user.first_name }} {{ review.user.last_name }}</strong>
-              <br>
-              {{ review.text }} | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+        <article class="media">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img src="<%= review.user.image.url %>">
             </p>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><%= review.user.name %></strong>
+                <br>
+                <%= review.text %>
+              </p>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <hr />
-
-      {{ endfor }}
+        <hr />
+      <% end %>
       </span>
 
 
-    <form action="" method="POST" id="form_review">
+    <form action="/restaurant/<%=@restaurant.id%>/reviews" method="POST" id="form_review">
         <article class="media">
             <div class="media-content">
               <p class="control">
-                <textarea id="review_text" class="textarea" placeholder="Add a comment..."></textarea>
+                <textarea id="review_text" name="review[text]" class="textarea" placeholder="Add a comment..."></textarea>
               </p>
             </div>
             <figure class="media-right">
               <p class="control">
                 <!-- change this to button. -->
-                <a class="button" id="post_comment_button" type="" onclick="">Post comment</a>
+                <a class="button" id="post_comment_button" type="submit" onclick="">Post comment</a>
               </p>
             </figure>
         </article>
@@ -66,8 +64,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#post_comment_button").click(function(){
-        var self_image_url = "{{ self.image.url }}";
-        var name = "{{ user.first_name }} {{user last_name}} "
+        var self_image_url = "<%= self.image.url %>";
+        var name = "<%= user.first_name %> <%=user last_name%> "
         var dom_text = '<article class="media"><figure class="media-left"><p class="image is-64x64"><img src="http://placehold.it/64x64">\
             <!-- <img src="' + self_image_url + '"> --> \
           </p> \

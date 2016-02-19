@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @swidget.name %>
+</p>
+
+<p>
+  <strong>Widget:</strong>
+  <%= @swidget.widget %>
+</p>
+
+<%= link_to 'Edit', edit_swidget_path(@swidget) %> |
+<%= link_to 'Back', swidgets_path %>

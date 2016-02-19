@@ -20,6 +20,7 @@ gem 'therubyracer', :platform=>:ruby
 gem 'passenger'
 
 gem 'annotate'
+gem 'faker'
 
 gem 'devise'
 gem 'administrate'

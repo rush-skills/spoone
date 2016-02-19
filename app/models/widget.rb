@@ -26,6 +26,7 @@ class Widget < ActiveRecord::Base
   has_many :reviews
   has_one :photo
   has_one :text
+  has_one :swidget
   has_many :menu
 
   def short_url
@@ -36,19 +37,19 @@ class Widget < ActiveRecord::Base
     elsif self.widget_klass=="text"
       "/restaurant/"+self.restaurant.id.to_s+"/s/text/"+self.text.id
     elsif self.widget_klass=="swidget"
-      "/restaurant/"+self.restaurant.id.to_s+"/s/text/"+self.swidget.id
+      "/restaurant/"+self.restaurant.id.to_s+"/s/static/"+self.swidget.id
     end
   end
 
   def long_url
     if self.widget_klass=="review"
-      "/restaurant/"+self.restaurant.id.to_s+"/s/reviews"
+      "/restaurant/"+self.restaurant.id.to_s+"/b/reviews"
     elsif self.widget_klass=="menu"
-      "/restaurant/"+self.restaurant.id.to_s+"/s/menus"
+      "/restaurant/"+self.restaurant.id.to_s+"/b/menus"
     elsif self.widget_klass=="text"
-      "/restaurant/"+self.restaurant.id.to_s+"/s/text/"+self.text.id
+      "/restaurant/"+self.restaurant.id.to_s+"/b/text/"+self.text.id
     elsif self.widget_klass=="swidget"
-      "/restaurant/"+self.restaurant.id.to_s+"/s/text/"+self.swidget.id
+      "/restaurant/"+self.restaurant.id.to_s+"/b/static/"+self.swidget.id
     end
 
   end

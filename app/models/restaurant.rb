@@ -17,7 +17,6 @@ class Restaurant < ActiveRecord::Base
   has_many :reviews, through: :widgets
   has_many :menu, through: :widgets
   has_many :text, through: :widgets
-  has_many :photo, through: :widgets
 
   mount_uploader :image, ImageUploader
 

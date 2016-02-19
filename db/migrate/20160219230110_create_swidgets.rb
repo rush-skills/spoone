@@ -1,8 +1,8 @@
-class CreatePhotos < ActiveRecord::Migration
+class CreateSwidgets < ActiveRecord::Migration
   def change
-    create_table :photos do |t|
+    create_table :swidgets do |t|
+      t.string :name
       t.references :widget, index: true, foreign_key: true
-      t.string :image
 
       t.timestamps null: false
     end
