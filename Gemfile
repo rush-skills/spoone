@@ -17,6 +17,14 @@ gem 'bootstrap-sass'
 gem 'pg'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
+gem 'passenger'
+
+gem 'devise'
+gem 'administrate'
+gem 'carrierwave'
+gem 'acts_as_list'
+gem 'geokit-rails'
+
 group :development do
   gem 'better_errors'
   gem 'foreman'
@@ -29,6 +37,5 @@ group :development, :test do
   gem 'thin'
 end
 group :production do
-  gem 'passenger'
   gem 'rails_12factor'
 end
