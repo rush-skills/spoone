@@ -1,0 +1,23 @@
+class API::RestaurantsController < API::ApplicationController
+  # before_action :authenticate_user!
+
+  before_action :set_restaurant, only: [:show]
+
+  def show
+
+  end
+
+  def nearby
+    lat = params["lat"]
+    lng = params["lon"]
+    @restaurant = Restaurant.closest(origin: [lat,lng]).first
+    render json: @restaurant.to_json
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_restaurant
+      @restaurant = Restaurant.find(params[:id])
+    end
+
+end

@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160219192036) do
 
   create_table "texts", force: :cascade do |t|
     t.integer  "widget_id"
-    t.string   "text"
+    t.text     "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

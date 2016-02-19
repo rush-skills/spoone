@@ -1,6 +1,14 @@
 class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
+  def big
+    render :layout => false
+  end
+
+  def small
+    render :layout => false
+  end
+
   # GET /menus
   # GET /menus.json
   def index

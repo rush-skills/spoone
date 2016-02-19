@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://bulma.io/css/main.css">
+</head>
+
+<body>
+
+<section class="hero is-fullheight">
+    <div class="hero-content" id="hero_content_id">
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="http://placehold.it/64x64">
+            <!-- <img src="{{ review.user.image.url }}"> -->
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{ review.user.first_name }} {{ review.user.last_name }}</strong>
+              <br>
+              {{ review.text }} | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <hr />
+
+      <article class="media" style="opacity:0.8">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="http://placehold.it/64x64">
+            <!-- <img src="{{ review2.user.image.url }}"> -->
+          </p>
+        </figure>
+        <div class="media-content blur">
+          <div class="content">
+            <p>
+              <strong>{{ review2.user.first_name }} {{ review2.user.last_name }}</strong>
+              <br>
+              {{ review2.text }} | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+            </p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+</section>
+
+  <style type="text/css">
+    @media screen and (max-width: 979px) {
+      .title.is-2 .icon.is-large {
+        display: none;
+      }
+    }
+
+    .title.is-2 {
+      position: relative;
+    }
+
+    .title.is-2 a {
+      color: #222324;
+    }
+
+    .title.is-2 a:hover {
+      color: #1fc8db;
+    }
+
+    .title.is-2 .icon.is-large {
+      left: -72px;
+      position: absolute;
+      top: -1px;
+    }
+
+    .hero .title.is-2 a {
+      color: white;
+    }
+
+    .hero .title.is-2 a:hover {
+      color: white;
+    }
+
+    #hero_content_id {
+        padding: 5%;
+        padding-top: 2%;
+    }
+
+    .blur {
+   color: transparent;
+   text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+  </style>
+
+  </body>
+</html>

@@ -1,6 +1,13 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
+  def big
+    render :layout => false
+  end
+
+  def small
+    render :layout => false
+  end
   # GET /reviews
   # GET /reviews.json
   def index
