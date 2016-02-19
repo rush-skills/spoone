@@ -31,6 +31,26 @@ class Restaurant < ActiveRecord::Base
 
   before_validation :geocode_address, :on => :create
 
+  before_save :prepare_bs
+  after_create :setup_widgets
+
+  def prepare_bs
+    self.address = self.address.upcase
+  end
+
+  def setup_widgets
+    Widget.create(restaurant: self, half: false, widget_klass: "review")
+    Widget.create(restaurant: self, half: false, widget_klass: "menu")
+  end
+
+  def menu_widget
+    self.widget.where(widget_klass: "menu").first
+  end
+
+  def review_widget
+    self.widget.where(widget_klass: "review").first
+  end
+
   private
   def geocode_address
     geo=Geokit::Geocoders::MultiGeocoder.geocode (address)

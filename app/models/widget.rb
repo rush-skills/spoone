@@ -24,7 +24,32 @@ class Widget < ActiveRecord::Base
   acts_as_list scope: :restaurant
 
   has_many :reviews
-  has_many :photo
-  has_many :text
+  has_one :photo
+  has_one :text
   has_many :menu
+
+  def short_url
+    if self.widget_klass=="review"
+      "/restaurant/"+self.restaurant.id.to_s+"/s/reviews"
+    elsif self.widget_klass=="menu"
+      "/restaurant/"+self.restaurant.id.to_s+"/s/menus"
+    elsif self.widget_klass=="text"
+      "/restaurant/"+self.restaurant.id.to_s+"/s/text/"+self.text.id
+    elsif self.widget_klass=="swidget"
+      "/restaurant/"+self.restaurant.id.to_s+"/s/text/"+self.swidget.id
+    end
+  end
+
+  def long_url
+    if self.widget_klass=="review"
+      "/restaurant/"+self.restaurant.id.to_s+"/s/reviews"
+    elsif self.widget_klass=="menu"
+      "/restaurant/"+self.restaurant.id.to_s+"/s/menus"
+    elsif self.widget_klass=="text"
+      "/restaurant/"+self.restaurant.id.to_s+"/s/text/"+self.text.id
+    elsif self.widget_klass=="swidget"
+      "/restaurant/"+self.restaurant.id.to_s+"/s/text/"+self.swidget.id
+    end
+
+  end
 end

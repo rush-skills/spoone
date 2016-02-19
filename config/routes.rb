@@ -12,18 +12,30 @@ Rails.application.routes.draw do
     get "/nearby", to: "restaurants#nearby"
   end
 
-  get "/restaurants/:id/reviews", to: "reviews#big"
-  get "/restaurants/:id/s/reviews", to: "reviews#small"
-  get "/restaurants/:id/menu", to: "menus#big"
-  get "/restaurants/:id/s/menu", to: "menus#small"
 
   devise_for :users
+  resources :restaurants do
+    member do
+      get "reviews", to: "reviews#index"
+      get "b/reviews", to: "reviews#big"
+      get "s/reviews", to: "reviews#small"
+      get "b/menu", to: "menus#big"
+      get "s/menu", to: "menus#small"
+      get "b/text/:tid", to: "text#big"
+      get "s/text/:tid", to: "text#small"
+    end
+    resources :texts
+    resources :photos
+    resources :menus
+    resources :reviews
+    resources :widgets
+  end
   resources :texts
+  resources :reviews
   resources :photos
   resources :menus
   resources :reviews
   resources :widgets
-  resources :restaurants
   resources :users
   root to: 'visitors#index'
 end
