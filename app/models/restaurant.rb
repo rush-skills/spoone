@@ -43,11 +43,11 @@ class Restaurant < ActiveRecord::Base
   end
 
   def menu_widget
-    self.widget.where(widget_klass: "menu").first
+    self.widgets.where(widget_klass: "menu").first
   end
 
   def review_widget
-    self.widget.where(widget_klass: "review").first
+    self.widgets.where(widget_klass: "review").first
   end
 
   private

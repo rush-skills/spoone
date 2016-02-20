@@ -23,7 +23,7 @@ class Widget < ActiveRecord::Base
   belongs_to :restaurant
   acts_as_list scope: :restaurant
 
-  has_many :reviews
+  has_many :reviews, -> { order(created_at: :desc) }
   has_one :photo
   has_one :text
   has_one :swidget
@@ -31,25 +31,25 @@ class Widget < ActiveRecord::Base
 
   def short_url
     if self.widget_klass=="review"
-      "/restaurant/"+self.restaurant.id.to_s+"/s/reviews"
+      "/restaurants/"+self.restaurant.id.to_s+"/s/reviews"
     elsif self.widget_klass=="menu"
-      "/restaurant/"+self.restaurant.id.to_s+"/s/menus"
+      "/restaurants/"+self.restaurant.id.to_s+"/s/menu"
     elsif self.widget_klass=="text"
-      "/restaurant/"+self.restaurant.id.to_s+"/s/text/"+self.text.id
+      "/restaurants/"+self.restaurant.id.to_s+"/s/text/"+self.text.id
     elsif self.widget_klass=="swidget"
-      "/restaurant/"+self.restaurant.id.to_s+"/s/static/"+self.swidget.id
+      "/restaurants/"+self.restaurant.id.to_s+"/s/static/"+self.swidget.id
     end
   end
 
   def long_url
     if self.widget_klass=="review"
-      "/restaurant/"+self.restaurant.id.to_s+"/b/reviews"
+      "/restaurants/"+self.restaurant.id.to_s+"/b/reviews"
     elsif self.widget_klass=="menu"
-      "/restaurant/"+self.restaurant.id.to_s+"/b/menus"
+      "/restaurants/"+self.restaurant.id.to_s+"/b/menu"
     elsif self.widget_klass=="text"
-      "/restaurant/"+self.restaurant.id.to_s+"/b/text/"+self.text.id
+      "/restaurants/"+self.restaurant.id.to_s+"/b/text/"+self.text.id
     elsif self.widget_klass=="swidget"
-      "/restaurant/"+self.restaurant.id.to_s+"/b/static/"+self.swidget.id
+      "/restaurants/"+self.restaurant.id.to_s+"/b/static/"+self.swidget.id
     end
 
   end

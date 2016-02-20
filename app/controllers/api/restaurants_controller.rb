@@ -1,6 +1,6 @@
 class API::RestaurantsController < API::ApplicationController
   # before_action :authenticate_user!
-
+  respond_to :json
   before_action :set_restaurant, only: [:show]
 
   def show
@@ -11,7 +11,8 @@ class API::RestaurantsController < API::ApplicationController
     lat = params["lat"]
     lng = params["lon"]
     @restaurant = Restaurant.closest(origin: [lat,lng]).first
-    render json: @restaurant.to_json
+    @widgets = @restaurant.widgets
+    render 'nearby'
   end
 
   private

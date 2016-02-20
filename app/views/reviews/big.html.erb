@@ -16,7 +16,7 @@
 
 
       <span id="reviews_span">
-      <%= @reviews.each do |review| %>
+      <% @reviews.each do |review| %>
 
         <article class="media">
           <figure class="media-left">
@@ -64,8 +64,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#post_comment_button").click(function(){
-        var self_image_url = "<%= self.image.url %>";
-        var name = "<%= user.first_name %> <%=user last_name%> "
+        var self_image_url = "<%= @reviews.first.user.image.url %>";
+        var name = "<%= @reviews.first.user.name %> "
         var dom_text = '<article class="media"><figure class="media-left"><p class="image is-64x64"><img src="http://placehold.it/64x64">\
             <!-- <img src="' + self_image_url + '"> --> \
           </p> \
