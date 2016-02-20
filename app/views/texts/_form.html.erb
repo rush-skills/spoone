@@ -1,12 +1,15 @@
-<%= simple_form_for(@text) do |f| %>
+<%= simple_form_for [@restaurant,@text] do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :text %>
+    <%= f.input :text, label: false, class: "wysiwyg" %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>

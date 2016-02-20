@@ -35,9 +35,9 @@ class Widget < ActiveRecord::Base
     elsif self.widget_klass=="menu"
       "/restaurants/"+self.restaurant.id.to_s+"/s/menu"
     elsif self.widget_klass=="text"
-      "/restaurants/"+self.restaurant.id.to_s+"/s/text/"+self.text.id
+      "/restaurants/"+self.restaurant.id.to_s+"/s/text/"+self.text.id.to_s
     elsif self.widget_klass=="swidget"
-      "/restaurants/"+self.restaurant.id.to_s+"/s/static/"+self.swidget.id
+      "/restaurants/"+self.restaurant.id.to_s+"/s/static/"+self.swidget.id.to_s
     end
   end
 
@@ -47,9 +47,9 @@ class Widget < ActiveRecord::Base
     elsif self.widget_klass=="menu"
       "/restaurants/"+self.restaurant.id.to_s+"/b/menu"
     elsif self.widget_klass=="text"
-      "/restaurants/"+self.restaurant.id.to_s+"/b/text/"+self.text.id
+      "/restaurants/"+self.restaurant.id.to_s+"/b/text/"+self.text.id.to_s
     elsif self.widget_klass=="swidget"
-      "/restaurants/"+self.restaurant.id.to_s+"/b/static/"+self.swidget.id
+      "/restaurants/"+self.restaurant.id.to_s+"/b/static/"+self.swidget.id.to_s
     end
 
   end

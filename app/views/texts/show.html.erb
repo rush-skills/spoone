@@ -1,14 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Widget:</strong>
-  <%= @text.widget %>
+  <strong>Name:</strong>
+  <%= @text.name %>
 </p>
 
 <p>
   <strong>Text:</strong>
-  <%= @text.text %>
+  <%= raw @text.text %>
 </p>
-
-<%= link_to 'Edit', edit_text_path(@text) %> |
-<%= link_to 'Back', texts_path %>

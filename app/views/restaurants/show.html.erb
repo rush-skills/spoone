@@ -6,7 +6,7 @@
     </li>
     <li class="bold"><a href="/restaurants/<%= @restaurant.id %>/menus" class="waves-effect waves-teal">MENU</a></li>
     <li class="bold"><a href="/restaurants/<%= @restaurant.id %>/reviews" class="waves-effect waves-teal">REVIEWS</a></li>
-    <li class="bold"><a href="http://materializecss.com/mobile.html" class="waves-effect waves-teal">TEXTS</a></li>
+    <li class="bold"><a href="/restaurants/<%= @restaurant.id %>/texts" class="waves-effect waves-teal">TEXTS</a></li>
   </ul>
   </header>
   <main>
@@ -24,12 +24,11 @@
       <div class="section">
 
         <div class="row">
+          <% @restaurant.widgets.each do |x| %>
           <div class="col m12">
-            <iframe frameborder="0" marginheight="1" marginwidth="1" scrolling="no" frameborder="0" allowtransparency="true" height="300px" style="width:100%;overflow:hidden" src="/restaurants/<%= @restaurant.id %>/s/menu"></iframe>
+            <iframe frameborder="0" marginheight="1" marginwidth="1" scrolling="no" frameborder="0" allowtransparency="true" height="300px" style="width:100%;overflow:hidden" src="<%= x.short_url %>"></iframe>
           </div>
-          <div class="col m12">
-            <iframe frameborder="0" marginheight="1" marginwidth="1" scrolling="no" frameborder="0" allowtransparency="true" height="300px" style="width:100%;overflow:hidden" src="/restaurants/<%= @restaurant.id %>/s/reviews"></iframe>
-          </div>
+          <% end %>
         </div>
 
       </div>

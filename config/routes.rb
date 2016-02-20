@@ -15,8 +15,8 @@ Rails.application.routes.draw do
       get "s/static/:sid", to: "swidgets#small"
       get "b/menu", to: "menus#big"
       get "s/menu", to: "menus#small"
-      get "b/text/:tid", to: "text#big"
-      get "s/text/:tid", to: "text#small"
+      get "b/text/:tid", to: "texts#big"
+      get "s/text/:tid", to: "texts#small"
     end
     resources :texts
     resources :menus
