@@ -9,13 +9,16 @@ class ReviewsController < ApplicationController
 
   def small
     @restaurant = Restaurant.find(params[:id])
-    @reviews = @restaurant.reviews.all
+    @reviews = @restaurant.reviews.first(2)
+    @r1 = @reviews.first
+    @r2 = @reviews.last
     render :layout => false
   end
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    @restaurant = Restaurant.find(params[:id])
+    @reviews = @restaurant.reviews.all
   end
 
   # POST /reviews
@@ -29,15 +32,8 @@ class ReviewsController < ApplicationController
     unless @review.widget.present?
       @review.widget = @restaurant.review_widget
     end
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
-      else
-        format.html { render :new }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
-    end
+    @review.save
+    render json: {status: 200}
   end
 
   private

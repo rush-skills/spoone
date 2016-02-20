@@ -15,8 +15,8 @@
 class Restaurant < ActiveRecord::Base
   has_many :widgets, -> { order(position: :asc) }
   has_many :reviews, through: :widgets
-  has_many :menu, through: :widgets
-  has_many :text, through: :widgets
+  has_many :menus, through: :widgets
+  has_many :texts, through: :widgets
 
   mount_uploader :image, ImageUploader
 

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,16 +15,15 @@
       <article class="media">
         <figure class="media-left">
           <p class="image is-64x64">
-            <img src="http://placehold.it/64x64">
-            <!-- <img src="{{ review.user.image.url }}"> -->
+            <img src="<%= @r1.user.image.url %>">
           </p>
         </figure>
         <div class="media-content">
           <div class="content">
             <p>
-              <strong>{{ review.user.first_name }} {{ review.user.last_name }}</strong>
+              <strong><%= @r1.user.name %></strong>
               <br>
-              {{ review.text }} | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+              <%= @r1.text %>
             </p>
           </div>
         </div>
@@ -36,16 +34,15 @@
       <article class="media" style="opacity:0.8">
         <figure class="media-left">
           <p class="image is-64x64">
-            <img src="http://placehold.it/64x64">
-            <!-- <img src="{{ review2.user.image.url }}"> -->
+            <img src="<%= @r2.user.image.url %>">
           </p>
         </figure>
         <div class="media-content blur">
           <div class="content">
             <p>
-              <strong>{{ review2.user.first_name }} {{ review2.user.last_name }}</strong>
+              <strong><%= @r2.user.name %></strong>
               <br>
-              {{ review2.text }} | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+              <%= @r2.text %>
             </p>
           </div>
         </div>

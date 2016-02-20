@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
+<!-- <link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/css/style.css"/> -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jgthms/bulma/master/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css"/>
+<style type="text/css">
+.slick-next:before
+{
+    content: '>';
+}
+[dir='rtl'] .slick-next:before
+{
+    content: '>';
+}
+.slick-prev:before
+{
+    content: '<';
+}
+[dir='rtl'] .slick-prev:before
+{
+    content: '<â€™';
+}
+</style>
+</head>
+<body>
+  <section class="hero is-info is-bold is-fullheight">
+    <div class="hero-content" align="center">
+        <div class="column is-10" style="align:center">
+          <div class="slider slider-for" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+            <% @menus.each do |m| %>
+              <div><img src="<%= m.image.url %>" height="70%" width="60%" max-height="70%" max-width="60%"></div>
+            <% end %>
+          </div>
+          <div class="slider slider-nav" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}' style="max-width:50%">
+            <% @menus.each do |m| %>
+              <div><img src="<%= m.image.url %>" height="70%" width="60%" max-height="70%" max-width="60%"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- </section> -->
+    </div>
+  </section>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://kenwheeler.github.io/slick/slick/slick.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+      console.log("Ready");
+    $('.slider-for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '.slider-nav',
+      adaptiveHeight:true
+    });
+    $('.slider-nav').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      asNavFor: '.slider-for',
+      dots: false,
+      centerMode: true,
+      focusOnSelect: true,
+      adaptiveHeight:true
+    });
+  });
+  </script>
+</body>
+</html>

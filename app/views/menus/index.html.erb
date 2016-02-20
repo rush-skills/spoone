@@ -1,29 +1,18 @@
-<p id="notice"><%= notice %></p>
+<h1>My Menus</h1>
 
-<h1>Listing Menus</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Widget</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class="row">
     <% @menus.each do |menu| %>
-      <tr>
-        <td><%= menu.widget %></td>
-        <td><%= menu.image %></td>
-        <td><%= link_to 'Show', menu %></td>
-        <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
-        <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+              <img src="<%=menu.image.url%>">
+            </div>
+            <div class="card-action">
+              <%= link_to 'Delete', [@restaurant,menu], method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+        </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
-
-<%= link_to 'New Menu', new_menu_path %>
+<%= link_to 'New Menu', new_restaurant_menu_path, class: "btn waves-effect" %>

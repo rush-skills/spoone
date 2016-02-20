@@ -7,85 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="http://bulma.io/css/main.css">
-</head>
-
-<body>
-
-<section class="hero is-fullheight">
-    <div class="hero-content" id="hero_content_id">
-
-
-      <span id="reviews_span">
-      <% @reviews.each do |review| %>
-
-        <article class="media">
-          <figure class="media-left">
-            <p class="image is-64x64">
-              <img src="<%= review.user.image.url %>">
-            </p>
-          </figure>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong><%= review.user.name %></strong>
-                <br>
-                <%= review.text %>
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <hr />
-      <% end %>
-      </span>
-
-
-    <form action="/restaurant/<%=@restaurant.id%>/reviews" method="POST" id="form_review">
-        <article class="media">
-            <div class="media-content">
-              <p class="control">
-                <textarea id="review_text" name="review[text]" class="textarea" placeholder="Add a comment..."></textarea>
-              </p>
-            </div>
-            <figure class="media-right">
-              <p class="control">
-                <!-- change this to button. -->
-                <a class="button" id="post_comment_button" type="submit" onclick="">Post comment</a>
-              </p>
-            </figure>
-        </article>
-    </form>
-
-  </div>
-
-    </div>
-</section>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    $("#post_comment_button").click(function(){
-        var self_image_url = "<%= @reviews.first.user.image.url %>";
-        var name = "<%= @reviews.first.user.name %> "
-        var dom_text = '<article class="media"><figure class="media-left"><p class="image is-64x64"><img src="http://placehold.it/64x64">\
-            <!-- <img src="' + self_image_url + '"> --> \
-          </p> \
-        </figure> \
-        <div class="media-content"> \
-          <div class="content"> \
-            <p> \
-              <strong>' + name + '</strong> \
-              <br>' + $("#review_text").val() + '\
-            </p>\
-          </div>\
-        </div>\
-      </article>\
-      <hr />'
-    $("#reviews_span").append(dom_text);
-    });
-})
-
-</script>
-
   <style type="text/css">
     @media screen and (max-width: 979px) {
       .title.is-2 .icon.is-large {
@@ -123,6 +44,96 @@ $(document).ready(function(){
         padding: 5%;
     }
   </style>
+
+</head>
+
+<body>
+
+<section class="hero is-fullheight">
+    <div class="hero-content" id="hero_content_id">
+
+
+      <span id="reviews_span">
+      <% @reviews.each do |review| %>
+
+        <article class="media">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img src="<%= review.user.image.url %>">
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><%= review.user.name %></strong>
+                <br>
+                <%= review.text %>
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <hr />
+      <% end %>
+      </span>
+
+
+    <form action="#" method="POST" data-remote="true" id="form_review">
+        <article class="media">
+            <div class="media-content">
+              <p class="control">
+                <textarea id="review_text" name="review[text]" class="textarea" placeholder="Add a comment..."></textarea>
+              </p>
+            </div>
+            <figure class="media-right">
+              <p class="control">
+                <!-- change this to button. -->
+                <button class="button" id="post_comment_button" type="" onclick="">Post comment</button>
+              </p>
+            </figure>
+        </article>
+    </form>
+
+  </div>
+
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#post_comment_button").click(function(e){
+        var self_image_url = "<%= @reviews.first.user.image.url %>";
+        var name = "<%= @reviews.first.user.name %> "
+        var dom_text = '<article class="media"><figure class="media-left"><p class="image is-64x64"><img src="http://placehold.it/64x64">\
+            <!-- <img src="' + self_image_url + '"> --> \
+          </p> \
+        </figure> \
+        <div class="media-content"> \
+          <div class="content"> \
+            <p> \
+              <strong>' + name + '</strong> \
+              <br>' + $("#review_text").val() + '\
+            </p>\
+          </div>\
+        </div>\
+      </article>\
+      <hr />'
+    $("#reviews_span").prepend(dom_text);
+      $.ajax({
+           type: "POST",
+           url: "/restaurants/<%=@restaurant.id%>/reviews",
+           data: $("#form_review").serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+
+           }
+         });
+
+    e.preventDefault();
+    });
+})
+
+</script>
 
   </body>
 </html>

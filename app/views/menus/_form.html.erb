@@ -1,9 +1,15 @@
-<%= simple_form_for(@menu) do |f| %>
+<%= simple_form_for [@restaurant,@menu] do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :widget %>
-    <%= f.input :image %>
+    <div class="#">
+      <div class="file-field input-field gallery_picture">
+        <div class="btn">
+          <span>Upload file</span>
+          <%= f.input_field :image %>
+        </div>
+      <input class="file-path validate" type="text"/>
+    </div>
   </div>
 
   <div class="form-actions">

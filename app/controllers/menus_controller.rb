@@ -2,6 +2,8 @@ class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
   def big
+    @restaurant = Restaurant.find(params[:id])
+    @menus = @restaurant.menus.all
     render :layout => false
   end
 
@@ -12,7 +14,8 @@ class MenusController < ApplicationController
   # GET /menus
   # GET /menus.json
   def index
-    @menus = Menu.all
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @menus = @restaurant.menus.all
   end
 
   # GET /menus/1
@@ -22,49 +25,33 @@ class MenusController < ApplicationController
 
   # GET /menus/new
   def new
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu = Menu.new
-  end
-
-  # GET /menus/1/edit
-  def edit
   end
 
   # POST /menus
   # POST /menus.json
   def create
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu = Menu.new(menu_params)
-
+    @menu.widget = @restaurant.menu_widget
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to @menu, notice: 'Menu was successfully created.' }
-        format.json { render :show, status: :created, location: @menu }
+        format.html { redirect_to @restaurant, notice: 'Menu was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @menu.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /menus/1
-  # PATCH/PUT /menus/1.json
-  def update
-    respond_to do |format|
-      if @menu.update(menu_params)
-        format.html { redirect_to @menu, notice: 'Menu was successfully updated.' }
-        format.json { render :show, status: :ok, location: @menu }
-      else
-        format.html { render :edit }
-        format.json { render json: @menu.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /menus/1
   # DELETE /menus/1.json
   def destroy
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu.destroy
     respond_to do |format|
-      format.html { redirect_to menus_url, notice: 'Menu was successfully destroyed.' }
+      format.html { redirect_to @restaurant, notice: 'Menu was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
