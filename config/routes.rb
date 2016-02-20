@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get "s/menu", to: "menus#small"
       get "b/text/:tid", to: "texts#big"
       get "s/text/:tid", to: "texts#small"
+      post "widget/reorder", to: "widgets#reorder"
     end
     resources :texts
     resources :menus

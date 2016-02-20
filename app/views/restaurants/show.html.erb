@@ -1,3 +1,5 @@
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
 <header>
   <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only"><i class="mdi-navigation-menu"></i></a></div>
   <ul id="nav-mobile" class="side-nav fixed">
@@ -23,10 +25,10 @@
     <div class="container">
       <div class="section">
 
-        <div class="row">
+        <div class="row" id="sortable">
           <% @restaurant.widgets.each do |x| %>
-          <div class="col m12">
-            <iframe frameborder="0" marginheight="1" marginwidth="1" scrolling="no" frameborder="0" allowtransparency="true" height="300px" style="width:100%;overflow:hidden" src="<%= x.short_url %>"></iframe>
+          <div class="col s12" data-wid="<%=x.id%>" style="z-index: 1;padding:20px;background: #eee;margin-bottom:5px;">
+            <iframe class="" frameborder="0" marginheight="1" marginwidth="1" scrolling="no" frameborder="0" allowtransparency="true" height="300px" style="width:100%;overflow:hidden" src="<%= x.short_url %>"></iframe>
           </div>
           <% end %>
         </div>
@@ -34,3 +36,24 @@
       </div>
 
   </main>
+<script>
+  $(document).on('ready',function(){
+    var el = document.getElementById('sortable');
+    var sortable = Sortable.create(el,{
+      onEnd: function (/**Event*/evt) {
+        obj = evt.item;
+        wid = $(obj).data("wid");
+        end = evt.newIndex;
+        uri = window.location.pathname;
+        $.post(uri+"/widget/reorder", {"_method": "POST", "end": end,"wid":wid});
+
+      }
+    });
+    var ifrDoc = $( 'iframe' ).contents();
+
+    $('#sortable', ifrDoc).on('mousemove mouseup', function (event) {
+        $(parent.document).trigger(event);
+    });
+
+  });
+</script>

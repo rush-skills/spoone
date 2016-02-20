@@ -1,6 +1,12 @@
 class WidgetsController < ApplicationController
   before_action :set_widget, only: [:show, :edit, :update, :destroy]
 
+  def reorder
+    widget = Widget.find(params[:wid])
+    widget.insert_at(params[:end].to_i)
+    render json: {status: 200}
+  end
+
   # GET /widgets
   # GET /widgets.json
   def index

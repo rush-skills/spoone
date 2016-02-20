@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://bulma.io/css/main.css">
+</head>
+
+<body>
+
+<section class="hero is-fullheight">
+    <div class="hero-content" id="hero_content_id">
+    <span style="text-align:left; font-size:1.75em;">Jukebox wishes</span>
+    <hr style="margin-top:0px;">
+
+      <span id="reviews_span">
+     </span>
+
+
+        <article class="media" style="margin:10px;">
+            <div class="media-content">
+              <p class="control">
+                <input style="line-height:1.75;" type="text" id="review_text" placeholder="Suggest a song..."></input>
+              </p>
+            </div>
+            <figure class="media-right">
+              <p class="control" style="vertical-align: center;">
+                <!-- change this to button. -->
+                <a class="button" id="post_comment_button" type="" onclick="">Suggest</a>
+              </p>
+            </figure>
+        </article>
+
+  </div>
+
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    profile_images_urls = ["https://scontent-sin1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/309405_118240971652740_6065907_n.jpg?oh=be7b73a8a40ba1054f9d982b6e4414f0&oe=576F2CF8", "https://scontent-sin1-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/10408707_963619157015773_6108963290408022741_n.jpg?oh=1cf0583230afd65d2768d26e17d8b5c6&oe=575BBB2F", "https://scontent-sin1-1.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/539229_258078417644087_1502189867_n.jpg?oh=ca935ff244c8251d42330018ccf1a37f&oe=57667DC0", "https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/10644921_10203618764682848_8927796188235211112_n.jpg?oh=956780173ed9e65af0eb763860ebc962&oe=57661078&__gda__=1466550829_d0da746fe54890c9a4f3cd820672f36e"];
+    data = [{name: "Welcome to the machine", votes: 11, id:1},
+            {name: "Take me to church", votes: 10, id:2},
+            {name: "Hello", votes: 2, id:3}];
+
+    create_dom_string = function(obj, i){
+        return '<article class="media">\
+        <figure class="media-left">\
+          <p class="image is-64x64">\
+            <img src="' + profile_images_urls[i%profile_images_urls.length] + '" style="border-radius: 32px;">\
+          </p>\
+        </figure>\
+        <div class="media-content">\
+          <div class="content">\
+            <p style="padding-top:15px;">\
+              <strong>' + obj.name + '</strong>\
+            </p>\
+          </div>\
+        </div>\
+        <figure class="media-left">\
+          <p class="image" style="padding-top:15px;">\
+            <span>\
+                <span id="' + "votes_" + obj.id +'">' + obj.votes + '</span>\
+                <i id="' + "vote_" + obj.id + '" style="padding-left:5px; padding-bottom:10px;" class="fa fa-hand-peace-o"></i>\
+            </span>\
+          </p>\
+        </figure>\
+      </article>\
+      <hr />';
+    }
+
+    add_dom = function(obj, i){
+        var st = create_dom_string(obj, i);
+        $("#reviews_span").append(st);
+        var a = "#vote_" + i;
+        console.log(a);
+        $(a).click(function(){
+            var i = $(this).attr('id');
+            var b = "#" + i.replace("vote", "votes");
+            console.log("Triggered" + b);
+            $(b)[0].innerHTML = (parseInt($(b)[0].innerHTML) + 1) + '';
+        });
+    }
+
+    var i;
+    for(i = 0; i < data.length; i++)
+    {
+        add_dom(data[i], i + 1);
+    }
+
+    $("#post_comment_button").click(function(){
+        obj = {};
+        obj.name = $("#review_text").val();
+        obj.votes = 1;
+        obj.id = data[data.length - 1].id + 1;
+        data.push(obj);
+        add_dom(obj, obj.id);
+    });
+})
+
+</script>
+
+  <style type="text/css">
+    @media screen and (max-width: 979px) {
+      .title.is-2 .icon.is-large {
+        display: none;
+      }
+    }
+
+
+    .fa{
+        font-size: 1.75em;
+        vertical-align: -moz-middle-with-baseline;
+        vertical-align: -webkit-baseline-middle;
+    }
+
+    .title.is-2 {
+      position: relative;
+    }
+
+    .title.is-2 a {
+      color: #222324;
+    }
+
+    .title.is-2 a:hover {
+      color: #1fc8db;
+    }
+
+    .title.is-2 .icon.is-large {
+      left: -72px;
+      position: absolute;
+      top: -1px;
+    }
+
+    .hero .title.is-2 a {
+      color: white;
+    }
+
+    .hero .title.is-2 a:hover {
+      color: white;
+    }
+
+    #hero_content_id {
+        padding: 5%;
+    }
+  </style>
+
+  </body>
+</html>
