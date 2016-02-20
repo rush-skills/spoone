@@ -52,7 +52,6 @@
 <section class="hero is-fullheight">
     <div class="hero-content" id="hero_content_id">
 
-
       <span id="reviews_span">
       <% @reviews.each do |review| %>
 
@@ -78,7 +77,7 @@
       </span>
 
 
-    <form action="#" method="POST" data-remote="true" id="form_review">
+    <form action="" method="POST" data-remote="true" id="form_review">
         <article class="media">
             <div class="media-content">
               <p class="control">
@@ -88,7 +87,7 @@
             <figure class="media-right">
               <p class="control">
                 <!-- change this to button. -->
-                <button class="button" id="post_comment_button" type="" onclick="">Post comment</button>
+                <a class="button" id="post_comment_button" type="">Post comment</a>
               </p>
             </figure>
         </article>
@@ -100,12 +99,12 @@
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
+$(document).on('ready',function(){
     $("#post_comment_button").click(function(e){
+        e.preventDefault();
         var self_image_url = "<%= @reviews.first.user.image.url %>";
         var name = "<%= @reviews.first.user.name %> "
-        var dom_text = '<article class="media"><figure class="media-left"><p class="image is-64x64"><img src="http://placehold.it/64x64">\
-            <!-- <img src="' + self_image_url + '"> --> \
+        var dom_text = '<article class="media"><figure class="media-left"><p class="image is-64x64"><img src="' + self_image_url + '">\
           </p> \
         </figure> \
         <div class="media-content"> \
@@ -117,19 +116,18 @@ $(document).ready(function(){
           </div>\
         </div>\
       </article>\
-      <hr />'
+      <hr />';
     $("#reviews_span").prepend(dom_text);
       $.ajax({
            type: "POST",
-           url: "/restaurants/<%=@restaurant.id%>/reviews",
+           url: "http://192.168.43.188:5000/restaurants/<%=@restaurant.id%>/reviews",
            data: $("#form_review").serialize(), // serializes the form's elements.
            success: function(data)
            {
-
+            console.log("test");
            }
          });
 
-    e.preventDefault();
     });
 })
 

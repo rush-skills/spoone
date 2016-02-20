@@ -33,7 +33,7 @@ class ReviewsController < ApplicationController
       @review.widget = @restaurant.review_widget
     end
     @review.save
-    render json: {status: 200}
+    render :nothing => true
   end
 
   private

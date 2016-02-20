@@ -1,35 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h1>All Restaurants</h1>
 
-<h1>Listing Restaurants</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Address</th>
-      <th>Lat</th>
-      <th>Lng</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class="row">
     <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= restaurant.name %></td>
-        <td><%= restaurant.image %></td>
-        <td><%= restaurant.address %></td>
-        <td><%= restaurant.lat %></td>
-        <td><%= restaurant.lng %></td>
-        <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= link_to restaurant do %>
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image">
+              <img src="<%= restaurant.image.url %>">
+              <span class="card-title"><%= restaurant.name %></span>
+            </div>
+            <div class="card-action">
+              <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
+              <%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+         </div>
+
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
-
-<%= link_to 'New Restaurant', new_restaurant_path %>
+<%= link_to 'New Restaurant', new_restaurant_path,class: "btn ripple-effect" %>
