@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   namespace :api, defaults: {format: :json} do
     get "/login", to: "users#login"
     get "/nearby", to: "restaurants#nearby"

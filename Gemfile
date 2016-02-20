@@ -21,6 +21,7 @@ gem 'passenger'
 
 gem 'annotate'
 gem 'faker'
+gem 'rails_admin'
 
 gem 'devise'
 gem 'administrate'
