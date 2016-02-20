@@ -7,7 +7,7 @@ class SwidgetsController < ApplicationController
   def small
     template = params[:sid].to_s
     template_name = template+"_small"
-    render :layout => false
+    render template_name,:layout => false
 
   end
 end
