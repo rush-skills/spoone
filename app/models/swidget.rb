@@ -19,4 +19,8 @@
 
 class Swidget < ActiveRecord::Base
   belongs_to :widget
+
+  def self.names
+    ["music","uber","quiz"]
+  end
 end

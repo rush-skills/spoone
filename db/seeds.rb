@@ -24,4 +24,11 @@ ratings = Array(1..5)
     img = "http://loremflickr.com/1000/1500/paris?random="+x.to_s
     Menu.create!(widget: r.menu_widget,remote_image_url: img)
   end
+  names = Swidget.names
+  names.each do |x|
+    w = Widget.create(restaurant: r, half: false, widget_klass: "swidget")
+    Swidget.create(name: x, widget: w)
+  end
+  w = Widget.create(restaurant: r, half: false, widget_klass: "text")
+  Text.create(name: "Annoucement",text: "ENJOY LIVE DJ TODAY WITH HUGE DISCOUNTS!", widget: w)
 end
