@@ -3,7 +3,7 @@ class WidgetsController < ApplicationController
 
   def reorder
     widget = Widget.find(params[:wid])
-    widget.insert_at(params[:end].to_i)
+    widget.insert_at(params[:end].to_i+1)
     render json: {status: 200}
   end
 
